@@ -4,30 +4,30 @@
     margin: 0;
 }
 
-.main-container {
-    transform: translateY(5rem);
+.main-container{
+    transform: translateX(-20px);
 }
 
 .signup-container {
     min-height: 32rem;
-    flex-basis: 21rem;
+    width: 370px;
     background-color: #ffffff;
     transform: translateX(0.7rem);
     box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
 }
 
 
-.btn {
-    width: 90%;
+.bottom-container button {
+    width: 100%;
     height: 50px;
-    background-color: #bede8c;
+    background-color: #9acb50;
     border-radius: 0;
     color: #ffffff;
     font-size: medium;
 }
 
 input {
-    width: 93%;
+    width: 98%;
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
@@ -76,18 +76,19 @@ span {
     justify-content: space-between;
 }
 
-.btn:hover {
-    background-color: #84c225;
+.bottom-container button:hover {
+    cursor: pointer;
+    background-color: #9acb50;
     color: white;
+    cursor: pointer;
 }
 
-.bottom-container{
+.bottom-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: end;
-    margin: 10px;
-    height: 17rem;
+    height: 18rem;
     align-self: flex-end;
 }
 
@@ -97,13 +98,12 @@ span {
     justify-content: baseline;
     background-color: white;
     padding: 30px 20px;
-    width: 300px;
-    height: 440px;
     box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
+    width: 310px;
 }
 
 .cross-mark {
-    transform: translate(267px, -39px);
+    transform: translate(280px, -37px);
 }
 
 .cross-mark button {
@@ -124,25 +124,29 @@ h4 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 90%;
     height: 24rem;
 }
 
+.modal-content {
+    width: 0px;
+}
+
 .download-btn button {
-    height: 30px;
+    height: 35px;
     background-color: white;
     border-radius: 5px;
-    color: #c3c3c3;
-    font-size: 10px;
-
+    color: #909090;
+    font-size: 9px;
+    font-weight: 600;
 }
 
 .download-btn button:hover {
-    height: 30px;
+    height: 35px;
     background-color: white;
     border-radius: 5px;
-    color: #c3c3c3;
-    font-size: 10px;
+    color: #909090;
+    font-size: 9px;
+    font-weight: 600;
 }
 
 .fa-play {
@@ -151,14 +155,35 @@ h4 {
 
 small {
     display: block;
-    color: red;
+    color: #ff0000;
     font-size: 10px;
 }
 
-.fa-bottle-droplet{
+.fa-bottle-droplet {
     color: #c3c3c3;
 }
 
-.fa-rotate-right{
+.fa-rotate-right {
     color: #c3c3c3;
+}
+
+.error {
+    border-bottom: 1px solid #ff0000;
+}
+
+.success {
+    border-bottom: 1px solid #84c225;
+}
+
+.disabled.btn {
+    border: none;
+    color: #ffffff;
+    background-color: #84c225;
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.disabled-button-container{
+    width: 90%;
+    cursor: not-allowed;
 }
