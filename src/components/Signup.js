@@ -35,9 +35,10 @@ class Signup extends Component {
             this.setState({
                 successMessage: "OTP has been sent",
             })
-        }else{
+        } else {
             this.setState({
                 successMessage: "",
+                error: "Please Enter Valid Number"
             });
         }
     }
@@ -67,8 +68,8 @@ class Signup extends Component {
                                 <div className='bottom-container'>
                                     <button type="submit" value="submit" className="btn btn-lg btn-block">Signup Using OTP</button>
                                     <p>By continuing, I accept TCP-bigbasket's <span>Terms and Conditions</span> and <span>Privacy Policy.</span></p>
-                                    <h1>{this.state.successMessage}</h1>
                                 </div>
+                                <h1>{this.state.successMessage}</h1>
                             </form>
                         </div>
                     </div>
@@ -79,8 +80,8 @@ class Signup extends Component {
                         </div>
                         <div className='main-side-container'>
                             <div className='m-5'>
-                                <h3><i className="fa-solid fa-bottle-droplet"></i></h3>
-                                <h3><i className="fa-solid fa-rotate-right"></i></h3>
+                                <a href='https://www.bigbasket.com/t1/?nc=b-cp-hp-sec2&b_t=cp_hp_sec2&b_camp=about-bigbasket&t_from_ban=200096&t_pos=1&t_ch=desktop' target='_blank'><h3><i className="fa-solid fa-bottle-droplet"></i></h3></a>
+                                <a href='https://www.bigbasket.com/t1/?nc=b-cp-hp-sec2&b_t=cp_hp_sec2&b_camp=about-bigbasket&t_from_ban=200096&t_pos=1&t_ch=desktop' target='_blank'><h3><i className="fa-solid fa-rotate-right"></i></h3></a>
                             </div>
                             <div className='side-container-button'>
                                 <h4>Shopping at fingertips!! Download our app</h4>
@@ -93,7 +94,7 @@ class Signup extends Component {
                     </div>
 
                 </div>
-                
+
             </>
 
         );
