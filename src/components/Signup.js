@@ -126,7 +126,8 @@ class Signup extends Component {
             count++;
         } else {
             this.setState({
-                secondNameError: "Enter valid name"
+                secondNameError: "Enter valid name",
+                successMessage: ""
             });
         }
 
@@ -253,6 +254,7 @@ class Signup extends Component {
                                 </div>
                             </div>
                         </div>
+                        <h1>{this.state.successMessage}</h1>
                     </div>
                 </div>
             </>
