@@ -1,0 +1,26 @@
+.item-container h1{
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+.item-container p {
+    margin: 0;
+    padding: 0;
+}
+
+.price-container{
+    height: 30px;
+    border: none;
+    background-color: white;
+    border: 1px solid #0000ff;
+    border-radius: 0px;
+}
+
+.dropdown-wrapper select{
+    font-size: 12px;
+}
+
+.option-container {
+    font-size: 12px;
+}
