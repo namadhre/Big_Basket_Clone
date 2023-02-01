@@ -120,7 +120,7 @@ span {
 }
 
 .continue-container{
-    height: 16rem;
+    height: 14rem;
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -168,12 +168,6 @@ span {
     color: #ffffff;
     border: none;
     border-radius: 50%;
-}
-
-.success-container-1 {
-    width: 400px;
-    height: 400px;
-    background-color: #ffffff;
 }
 
 h4 {

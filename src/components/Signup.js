@@ -19,11 +19,12 @@ class Signup extends Component {
             nextStep: false,
             successMessage: "",
             firstName: "",
-            secondName: "",
+            lastName: "",
             email: "",
             firstNameError: "",
             secondNameError: "",
-            emailError: ""
+            emailError: "",
+            isAllDetailsFilled: false, 
         }
     }
 
@@ -90,41 +91,54 @@ class Signup extends Component {
             });
         } else {
             this.setState({
-                secondName: event.target.value,
+                lastName: event.target.value,
                 secondNameError: "",
             });
         }
     }
 
     handleChangeEmail = (event) => {
-        this.setState({
-            email: event.target.value,
-        });
+        if (validator.isEmail(event.target.value)) {
+            this.setState({
+                email: event.target.value,
+                emailError: "",
+            });
+        }else{
+            this.setState({
+                emailError: "Please Enter valid email",
+            })
+        }
     }
 
     handleSecondSubmit = (event) => {
+
         let count = 0
+        console.log("first", count)
         event.preventDefault();
 
         if (validator.isEmail(this.state.email)) {
             count++;
+
         } else {
+            console.log("email")
             this.setState({
-                emailError: "Please Enter valid email"
+                emailError: "Please Enter valid email",
             });
         }
 
         if (validator.isAlpha(this.state.firstName)) {
             count++;
         } else {
+            console.log("fnale")
             this.setState({
                 firstNameError: "Enter valid name"
             });
         }
 
-        if (validator.isAlpha(this.state.secondName)) {
+        if (validator.isAlpha(this.state.lastName)) {
             count++;
         } else {
+            console.log("NmaeL")
             this.setState({
                 secondNameError: "Enter valid name",
                 successMessage: ""
@@ -137,21 +151,18 @@ class Signup extends Component {
             }, () => {
                 let user = {
                     fName: this.state.firstName,
-                    lName: this.state.secondName,
+                    lName: this.state.lastName,
                     email: this.state.email,
                     number: this.state.number,
                 };
-                this.props.addData({
-                    user
-                })
+                this.props.addData({ user })
             })
         } else {
+            console.log("Hello")
             this.setState({
                 successMessage: "",
             })
         }
-
-
     }
 
     render() {
@@ -166,7 +177,6 @@ class Signup extends Component {
                         <div className="modal-content d-flex flex-row">
                             <div className='main-container d-flex align-items-center justify-content-center model-content'>
                                 <div className='signup-container d-flex flex-column align-items-center'>
-
                                     {this.state.nextStep === false &&
                                         <>
                                             <h1>LOGIN/SIGN UP</h1>
@@ -219,7 +229,7 @@ class Signup extends Component {
                                                 </div>
                                                 <div className='fullname-container-2 ms-3'>
                                                     <label htmlFor='email'>Email</label>
-                                                    <input type="email" id="email" className="no-outline" onChange={(event) => {
+                                                    <input type="text" id="email" className="no-outline" onChange={(event) => {
                                                         this.handleChangeEmail(event);
                                                     }} />
                                                     <small>{this.state.emailError}</small>
