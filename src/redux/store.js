@@ -1,9 +1,9 @@
 import { createStore } from "redux";
 
-import storeData from "./reducers/users";
+import rootReducer from './reducers/index'
 
 const store = createStore(
-    storeData,
+    rootReducer,
     window.__REDUX_DEVTOOLS_EXTENSION__
         ? window.__REDUX_DEVTOOLS_EXTENSION__()
         : (noop) => noop
