@@ -1,6 +1,16 @@
 .App {
-  height: 100vh;
-  background-color: #eaebec;
   font-family: Helvetica, Helvetica, Arial, sans-serif;
+}
+
+.banking-container {
+  width: 1200px;
+}
+
+
+@media screen and (max-width: 700px){
+  .banking-container{
+    width: 100%;
+  }
+  
 }
 
