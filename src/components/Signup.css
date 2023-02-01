@@ -17,6 +17,7 @@
 }
 
 
+
 .bottom-container button {
     width: 100%;
     height: 50px;
@@ -26,7 +27,7 @@
     font-size: medium;
 }
 
-input {
+.custome-input input {
     width: 98%;
     border-top-style: hidden;
     border-right-style: hidden;
@@ -34,10 +35,36 @@ input {
     border-bottom-style: groove;
 }
 
+.fullname-container {
+    width: 90%;
+}
+
+.fullname-container input{
+    display: flex;
+    justify-content: flex-start;
+    width: 90%;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;   
+}
+
+.fullname-container-2 {
+    width: 90%;
+}
+
+.fullname-container-2 input{
+    width: 100%;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove; 
+}
+
 label {
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: smaller;
-    color: #c3c3c3;
+    color: #b3b3b3;
 }
 
 .no-outline:focus {
@@ -59,10 +86,10 @@ h2 {
     font-weight: 300;
 }
 
+
 p {
-    margin: 10px;
-    color: #c3c3c3;
-    font-size: 10px;
+    color: #b3b3b3;
+    font-size: 13px;
 }
 
 span {
@@ -92,6 +119,34 @@ span {
     align-self: flex-end;
 }
 
+.continue-container{
+    height: 16rem;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.continue-container button{
+    height: 50px;
+    width: 90%;
+    border: none;
+    cursor: pointer;
+    background-color: #9acb50;
+    color: white;
+    cursor: pointer;
+}
+
+.continue-container button:hover{
+    height: 50px;
+    width: 90%;
+    border: none;
+    cursor: pointer;
+    background-color: #9acb50;
+    color: white;
+    cursor: pointer;
+}
+
 .side-container {
     display: flex;
     flex-direction: column;
@@ -113,6 +168,12 @@ span {
     color: #ffffff;
     border: none;
     border-radius: 50%;
+}
+
+.success-container-1 {
+    width: 400px;
+    height: 400px;
+    background-color: #ffffff;
 }
 
 h4 {
