@@ -5,7 +5,7 @@ import Signup from './Signup';
 import "./Header.css";
 
 class Header extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
     }
     render() {
@@ -45,13 +45,16 @@ class Header extends Component {
 
                         </div>
                     </nav>
-                    <div className='searchbar-container'>
-                        <div className='searchbar-input-container'>
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        </div>
-                        <div className='search-button'>
-                            <button type="submit"><i className="fa-solid fa-magnifying-glass p-2"></i></button>
-                        </div>
+                    <div>
+                        <form className='searchbar-container'>
+                            <div className='searchbar-input-container'>
+                                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                                    onChange={(event) => this.props.handleChangeValue(event)} />
+                            </div>
+                            <div className='search-button'>
+                                <button type="submit"><i className="fa-solid fa-magnifying-glass p-2"></i></button>
+                            </div>
+                        </form>
                     </div>
                     <Signup />
                 </div>
