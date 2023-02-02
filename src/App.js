@@ -38,7 +38,6 @@ class App extends Component {
 
       return productName.includes(name)
     });
-    console.log(item);
     if (item.length > 0) {
       this.setState({
         value: event.target.value,
