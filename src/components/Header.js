@@ -8,6 +8,11 @@ class Header extends Component {
     constructor(props) {
         super(props);
     }
+
+    handleClick = (event) => {
+        event.preventDefault();
+    }
+
     render() {
         return (
             <header className='d-flex justify-content-center'>
@@ -52,13 +57,12 @@ class Header extends Component {
                                     onChange={(event) => this.props.handleChangeValue(event)} />
                             </div>
                             <div className='search-button'>
-                                <button type="submit"><i className="fa-solid fa-magnifying-glass p-2"></i></button>
+                                <button onClick={this.handleClick}><i className="fa-solid fa-magnifying-glass p-2"></i></button>
                             </div>
                         </form>
                     </div>
                     <Signup />
                 </div>
-
             </header>
         );
     }
