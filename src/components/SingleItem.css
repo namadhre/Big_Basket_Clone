@@ -1,0 +1,20 @@
+ul li {
+    color: grey;
+}
+
+p {
+    color: black;
+}
+
+.product-info {
+    font-size: 11px;
+    color: grey
+}
+
+.add-cart-button {
+    background-color: #9acb50;
+    border: none;
+    width: 200px;
+    height: 40px;
+    color: #ffffff;
+}
