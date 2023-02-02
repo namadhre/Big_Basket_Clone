@@ -73,5 +73,6 @@
     .divider-container{
         display: flex;
         flex: 1;
+        margin: 0px;
     }
 }
