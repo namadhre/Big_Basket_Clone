@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./SingleItem.css"
 
 class SingleProduct extends Component {
 
@@ -20,30 +21,7 @@ class SingleProduct extends Component {
                         <p className="m-0">Price: ₹ {this.props.product.price[0].price}</p>
                         <p className="fs-10px">(inclusive of all taxes)</p>
                         <div>
-
-                            <button
-                                className="bg-danger border-0 text-white w-75 px-5 py-2 rounded"
-                            >
-                                Add
-                            </button>
-
-
-                            <div className="w-50 border rounded p-2">
-                                <div className="justify-content-between d-flex align-items-center">
-                                    <div
-                                        className="d-flex justify-content-center align-items-center sign-hover sign p-1"
-                                        role={"button"}
-                                    >
-                                        <i className="minus-svg "></i>
-                                    </div>
-                                    <div
-                                        className="d-flex justify-content-center align-items-center sign-hover sign p-1"
-                                        role={"button"}
-                                    >
-                                        <i className="plus-svg "></i>
-                                    </div>
-                                </div>
-                            </div>
+                            <button className="add-cart-button">ADD TO BASKET</button>
                         </div>
                         <div>
                             <i className="bike-svg"></i>
@@ -91,7 +69,7 @@ class SingleProduct extends Component {
                         {this.props.product.brand} {this.props.product.name}
                     </h5>
                     <div className="border-bottom mt-2">
-                        <p>About the Product</p>
+                        <p className='h5'>About the Product</p>
                         <div className="fs-12px mb-3">
                             <ul className="mb-0 p-0">
                                 <li>
@@ -114,7 +92,7 @@ class SingleProduct extends Component {
                         </div>
                     </div>
                     <div className="border-bottom mt-3">
-                        <p>Benefits</p>
+                        <p className='h5'>Benefits</p>
                         <ul className="fs-12px p-0">
                             <li> If a piece of onion is inhaled, it can slow down or stop nose bleeding.</li>{" "}
                             <li>Those who have sleeping disorders or insomnia can have a good night sleep if they have an onion every day.</li>{" "}
@@ -130,7 +108,7 @@ class SingleProduct extends Component {
                         </ul>
                     </div>
                     <div className="border-bottom mt-2">
-                        <p>Storage and Uses</p>
+                        <p className='h5'>Storage and Uses</p>
                         <ul className="fs-12px p-0">
                             <li>Store in a cool dry place, need not refridgerate.</li>{" "}
                             <li>
@@ -142,8 +120,8 @@ class SingleProduct extends Component {
                         </ul>
                     </div>
                     <div className="border-bottom mt-2">
-                        <p>About the Product</p>
-                        <div className="fs-12px">
+                        <p className='h5'>Other Product Info</p>
+                        <div className="product-info">
                             EAN Code: 10000150 <br /> Country of origin: India <br /> Sourced &amp; Marketed by: Supermarket Grocery Supplies Pvt. Ltd, No. 7,
                             Service Road, Off 100 Feet Road Indiranagar Landmark: Above HDFC Bank Bangalore, Karnataka 560071 <br /> Best before 3 days from
                             delivery date <br /> For Queries/Feedback/Complaints, Contact our Customer Care Executive at: Phone: 1860 123 1000 | Address:
