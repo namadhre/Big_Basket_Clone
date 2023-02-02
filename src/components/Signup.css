@@ -87,12 +87,12 @@ h2 {
 }
 
 
-p {
+.bottom-container p {
     color: #b3b3b3;
     font-size: 13px;
 }
 
-span {
+.bottom-container span {
     color: #96bafa;
 }
 
