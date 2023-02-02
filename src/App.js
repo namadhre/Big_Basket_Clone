@@ -14,18 +14,75 @@ import fruitsImg from './images/fruits.jpg';
 import vegetablesImg from './images/vegetables.jpg';
 import plusesImg from './images/pluses.jpg';
 import sproutsImg from './images/sprouts.jpg';
+import SearchItem from './components/SearchItem';
 
 
 class App extends Component {
-  render() {
-    return (
+  constructor(props) {
 
+    super(props);
+
+    this.state = {
+      value: "",
+      product: "",
+      isItemFound: false,
+    }
+
+  }
+
+  handleChangeValue = (event) => {
+
+    let item = this.props.items.filter((product) => {
+      let name = event.target.value.toLowerCase();
+      let productName = product.name.toLowerCase();
+
+      return productName.includes(name)
+    });
+    console.log(item);
+    if (item.length > 0) {
+      this.setState({
+        value: event.target.value,
+        product: item,
+        isItemFound: true,
+      })
+    } else {
+      this.setState({
+        isItemFound: false,
+      })
+    }
+
+  }
+
+
+  render() {
+
+    return (
       <div className="App">
         <Router>
-          <Header />
+          <Header products={this.props.items}
+            handleChangeValue={this.handleChangeValue}
+          />
           <Switch>
             <Route path="/" exact>
               <>
+                {this.state.isItemFound === true && this.state.value !== "" &&
+                  <>
+                    <div className="h1 text-center mt-3">Are You Looking for this?
+                    </div>
+                    <div className="container common-container">
+                      <div className="row">
+                        <SearchItem items={this.state.product} />
+                      </div>
+                    </div>
+                  </>
+
+                }
+                {this.state.value !== "" && this.state.isItemFound == false &&
+                  <>
+                    <div className='h1 text-center'>No Item found </div>
+                  </>
+
+                }
                 <div className='d-flex justify-content-center mt-2'>
                   <img className="img-fluid" src='https://www.bigbasket.com/media/uploads/banner_images/YXHP144_hp_fom_m_bbpl-staples_460_320123_Bangalore.jpg' />
                 </div>
