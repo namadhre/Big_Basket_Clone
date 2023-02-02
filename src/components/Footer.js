@@ -32,9 +32,7 @@ class Footer extends Component {
                                 <p> Vendor Connect</p>
                             </div>
                         </div>
-                        <div className='divider-container ms-5
-                        
-                        '>
+                        <div className='divider-container'>
                             <div className='store-button'>
                                 <h1>Download Our App</h1>
                                 <button className='mb-3'>
@@ -45,11 +43,9 @@ class Footer extends Component {
                                 </button>
                             </div>
                             <div>
-
                                 <h1>
                                     Get Social With Us
                                 </h1>
-
                                 <p>
                                     <i className=" h1 fa-brands fa-facebook"></i>
                                     <i className="h1 fa-brands fa-pinterest ms-3"></i>
