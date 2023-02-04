@@ -67,3 +67,7 @@ a {
 .price-container-p p{
     font-size: 15px;
 }
+
+.add-message-p{
+    color: green;
+}
