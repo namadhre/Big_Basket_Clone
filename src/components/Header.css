@@ -38,6 +38,24 @@ ul button {
     color:#ffffff
 }
 
+.cart-button{
+    /* color: red; */
+    border: none;
+    background-color: #ffffff;
+}
+
+.cart-button {
+    width: 110px;
+}
+
+.cart-button span{
+    color: red;
+}
+
+.cart-container {
+    display: flex;
+ }
+
 @media screen and (max-width: 700px) {
 
     .brand-logo {
@@ -64,4 +82,5 @@ ul button {
         align-items: center;
         justify-content: center;
     }
+    
 }
