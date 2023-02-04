@@ -1,7 +1,33 @@
 import React, { Component } from 'react';
-import "./SingleItem.css"
+import "./SingleProduct.css"
 
 class SingleProduct extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isAddButtonClicked: false,
+            valueErrorMessage: "",
+        }
+    }
+
+    handleSingleProductValue = (event) => {
+        if(Number(event.target.value) < 6) {
+            this.setState({
+                valueErrorMessage: ""
+            })
+        } else if (Number(event.target.value > 5)){
+            this.setState ({
+                valueErrorMessage: "Please enter quantity less than 6",
+            })
+        }else{
+            this.setState({
+                valueErrorMessage: "Invalid quantity",
+            })
+        }
+    }
+
 
     render() {
         return (
@@ -20,8 +46,16 @@ class SingleProduct extends Component {
                         </p>
                         <p className="m-0">Price: ₹ {this.props.product.price[0].price}</p>
                         <p className="fs-10px">(inclusive of all taxes)</p>
-                        <div>
-                            <button className="add-cart-button">ADD TO BASKET</button>
+                        <div className='d-flex'>
+                            <input className="single-product-input " defaultValue="1" onChange={(event) => {
+                                this.handleSingleProductValue(event);
+                                this.props.handleChangeQuantity(event)}} />
+                            <button className="add-cart-button" onClick={() => {
+                                this.props.handleAddClick(this.props.product);
+                            }}>ADD TO BASKET</button>
+                        </div>
+                        <div className='price-error-single'>
+                            <p>{this.state.valueErrorMessage}</p>
                         </div>
                         <div>
                             <i className="bike-svg"></i>
@@ -34,16 +68,13 @@ class SingleProduct extends Component {
                                     {this.props.product.price.map((price) => {
                                         return (
                                             <div
-                                                className={
-                                                    "border mb-2 rounded d-flex justify-content-between align-items-center" +
-                                                    (price.price === price.price ? " apple-green" : "")
-                                                }
+                                                className="border mb-2 rounded d-flex justify-content-between align-items-center"
                                                 key={price.quantity}
                                                 role="button"
                                             >
                                                 <span className="px-2 py-1">{price.quantity} Kg</span>
                                                 <span>₹{price.price}</span>
-                                                <div className={"align-self-stretch px-1" + (price.price === price.price ? " apple-green-dark" : "")}>
+                                                <div className="align-self-stretch px-1">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         width="16"
@@ -75,19 +106,19 @@ class SingleProduct extends Component {
                                 <li>
                                     Onions are known to be rich in biotin. Most of the flavonoids which are known as anti-oxidants are concentrated more in the outer
                                     layers, so when you peel off the layers, you should remove as little as possible.
-                                </li>{" "}
+                                </li>
                                 <li>
                                     Onion can fill your kitchen with a thick spicy aroma. It is a common base vegetable in most Indian dishes, thanks to the wonderful
                                     flavor that it adds to any dish.
                                 </li>
-                            </ul>{" "}
+                            </ul>
                             <br /> Product image shown is for representation purpose only, the actually product may vary based on season, produce &amp;
                             availability.
-                            <br /> Click here for delicious vegetable recipes -{" "}
+                            <br /> Click here for delicious vegetable recipes -
                             <strong>
                                 <a className="text-break" href="https://www.bigbasket.com/flavors/collections/227/fresh-vegetables/">
                                     https://www.bigbasket.com/flavors/collections/227/fresh-vegetables/
-                                </a>{" "}
+                                </a>
                             </strong>
                         </div>
                     </div>
@@ -100,7 +131,7 @@ class SingleProduct extends Component {
                             <li>
                                 Onions are high in sulphur, vitamin B6 and B9. It has high quantities of water and naturally low in fat. It is high in phytochemical
                                 compounds.
-                            </li>{" "}
+                            </li>
                             <li>
                                 Onions are known to contain manganese, copper, Vitamin B6, Vitamin C, Folic acid, Amino acid and dietary fibers along with
                                 phosphorus, folate and copper.
@@ -110,12 +141,12 @@ class SingleProduct extends Component {
                     <div className="border-bottom mt-2">
                         <p className='h5'>Storage and Uses</p>
                         <ul className="fs-12px p-0">
-                            <li>Store in a cool dry place, need not refridgerate.</li>{" "}
+                            <li>Store in a cool dry place, need not refridgerate.</li>
                             <li>
                                 Freezing onions, soaking them under water and keeping the root intact before chopping are some methods to reduce tears while
                                 chopping them.
-                            </li>{" "}
-                            <li> It is a versatile vegetable that can be used raw, sauteed, caramelized, roasted, deep fried, pureed or boiled as required.</li>{" "}
+                            </li>
+                            <li> It is a versatile vegetable that can be used raw, sauteed, caramelized, roasted, deep fried, pureed or boiled as required.</li>
                             <li> It lends itself very well to almost any cuisine.It can be consumed with salads, curries or chutnies.</li>
                         </ul>
                     </div>
