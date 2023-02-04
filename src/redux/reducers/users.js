@@ -6,7 +6,7 @@ const initialState = {
 
 const storeData = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_DATA': return {
+        case 'ADD_DATA_USERS': return {
             ...state,
             users: [
                 {

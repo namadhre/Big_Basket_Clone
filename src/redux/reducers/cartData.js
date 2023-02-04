@@ -9,18 +9,24 @@ const cartItemsData = (state = initialState, action) => {
                 ...state,
                 cartItems: [
                     ...state.cartItems,
-
                     action.payload
                 ]
             };
-        case "DELETE_DATA":
-            console.log("hello");
+        case 'DELETE_DATA':
             return {
+                ...state,
                 cartItems: []
+            };
+        case 'UPDATE_SINGLE_DATA':
+            return {
+                ...state,
+                cartItems: [
+                    action.payload["0"],
+                ]
             }
-
         default:
             return state;
+
     }
 }
 

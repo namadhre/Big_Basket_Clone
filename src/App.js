@@ -17,6 +17,8 @@ import sproutsImg from './images/sprouts.jpg';
 import SearchItem from './components/SearchItem';
 import Cart from './components/Cart';
 import addData from './redux/actions/addData';
+import deleteData from './redux/actions/deteteData';
+import updateSingleCartData from './redux/actions/updateSingleCartData'
 
 
 class App extends Component {
@@ -86,7 +88,43 @@ class App extends Component {
     })
   }
 
+  handleDeleteByOneClick = (id, quantityDec) => {
+    if (quantityDec > 1) {
+      let quantity = -1;
+      this.props.addData({
+        quantity,
+        id
+      })
+    }else {
+      let updatedCartData = this.props.cartItems.filter((cartItem) => {
+        return id != cartItem.id
+      });
+  
+      this.props.updateSingleCartData({
+        ...updatedCartData,
+      })
+    }
+  } 
+
+  handleDeleteCartId = (id) => {
+    let updatedCartData = this.props.cartItems.filter((cartItem) => {
+      return id != cartItem.id
+    });
+
+    console.log(updatedCartData);
+
+    this.props.updateSingleCartData({
+      ...updatedCartData,
+    })
+
+  }
+
+  handleDeleteCartData = () => {
+    this.props.deleteData()
+  }
+
   render() {
+
     return (
       <div className="App">
         <Router>
@@ -98,11 +136,19 @@ class App extends Component {
               <>
                 {this.state.isItemFound === true && this.state.value !== "" &&
                   <>
-                    <div className="h1 text-center mt-3">Are You Looking for this?
-                    </div>
+                    <div className="h1 text-center mt-3"> Do You find what you are looking for ? </div>
                     <div className="container common-container">
                       <div className="row">
-                        <SearchItem items={this.state.product} />
+                        {this.state.product.map((product) => {
+                          return (
+                            <SearchItem
+                              item={product}
+                              key={product.id}
+                              handleAddClick={this.handleAddClick}
+                              handleChangeQuantity={this.handleChangeQuantity}
+                            />
+                          )
+                        })}
                       </div>
                     </div>
                   </>
@@ -240,8 +286,12 @@ class App extends Component {
 
             <Route path="/cart">
               <Cart
+                handleDeleteByOneClick={this.handleDeleteByOneClick}
                 handleAddClick={this.handleAddClick}
-                handleChangeQuantity={this.handleChangeQuantity} />
+                handleChangeQuantity={this.handleChangeQuantity} 
+                handleDeleteCartData={this.handleDeleteCartData}
+                handleDeleteCartId={this.handleDeleteCartId}
+                />
             </Route>
 
             <Route path="/:id" exact render={(routeProps) => {
@@ -265,7 +315,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.itemsData.items
+    items: state.itemsData.items,
+    cartItems: state.cartItemsData.cartItems,
   }
 }
 
@@ -274,6 +325,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addData: (payload) => {
       return dispatch(addData(payload));
+    },
+    deleteData: () => {
+      return dispatch(deleteData());
+    },
+    updateSingleCartData: (payload) => {
+      return dispatch(updateSingleCartData(payload));
     }
   }
 }
