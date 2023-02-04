@@ -4,10 +4,8 @@ import bblogo from "../images/bb_logo.png";
 import Signup from './Signup';
 import "./Header.css";
 
+
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     handleClick = (event) => {
         event.preventDefault();
@@ -61,7 +59,16 @@ class Header extends Component {
                             </div>
                         </form>
                     </div>
-                    <Signup />
+                    <div className='cart-container'>
+                        <Signup />
+                        <Link to="/cart">
+                            <button className='mt-4 cart-button'>
+                                <span><i className="fa-solid fa-basket-shopping h4"></i></span>
+                                 My Basket 0 items
+                                 </button>
+                        </Link>
+                    </div>
+
                 </div>
             </header>
         );
