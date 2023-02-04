@@ -16,36 +16,37 @@ class Cart extends Component {
 
     }
 
-    handleConformationClick = () => {
 
-    }
 
     render() {
 
-        let totalCost = 0;
-        let reducedCartDetails = this.props.cartItems.reduce((accumulator, item) => {
-            if (accumulator.hasOwnProperty(item.id)) {
-                accumulator[item.id] += Number(item.quantity);
-            } else {
-                accumulator[item.id] = Number(item.quantity);
-            }
-            return accumulator;
-        }, {});
+        let totalCost;
+        let reducedCartItems;
+        if (this.props.cartItems[0]) {
+            let reducedCartDetails = this.props.cartItems.reduce((accumulator, item) => {
+                if (accumulator.hasOwnProperty(item.id)) {
+                    accumulator[item.id] += Number(item.quantity);
+                } else {
+                    accumulator[item.id] = Number(item.quantity);
+                }
+                return accumulator;
+            }, {});
 
-        let reducedCartItems = Object.entries(reducedCartDetails).map((detail) => {
-            let productInfo = this.props.items.find((item) => {
-                return item.id == detail[0];
-            });
-            return [productInfo, detail[1]];
-        },);
-        totalCost = reducedCartItems.reduce((accumulator, item) => {
-            accumulator += (item[0].price[0].price * item[1])
-            return accumulator
-        }, 0).toFixed(2)
-        
+            reducedCartItems = Object.entries(reducedCartDetails).map((detail) => {
+                let productInfo = this.props.items.find((item) => {
+                    return item.id == detail[0];
+                });
+                return [productInfo, detail[1]];
+            },);
+            totalCost = reducedCartItems.reduce((accumulator, item) => {
+                accumulator += (item[0].price[0].price * item[1])
+                return accumulator
+            }, 0).toFixed(2)
+        }   
+
         return (
             <>
-                {this.props.cartItems.length > 0 ?
+                {this.props.cartItems.length > 0 && this.props.cartItems[0] ?
                     <div className='d-flex justify-content-center mt-4'>
                         <div className='cart-main-container mb-5'>
                             <h1 className='basket-length'>{`Your Basket ( ${reducedCartItems.length} items)`}</h1>
@@ -75,8 +76,8 @@ class Cart extends Component {
                                 </div>
 
                                 {reducedCartItems.map((item) => {
-                                    return <>
-                                        <div className="container" key={item[0].id}>
+                                    return (<div key={item[0].id}>
+                                        <div className="container">
                                             <div className="row mt-4">
                                                 <div className="col-6 cart-product-details">
                                                     <small>{item[0].brand}</small>
@@ -86,19 +87,23 @@ class Cart extends Component {
                                                     <p className='h5'>{`Rs. ${item[0].price[0].price}`}</p>
                                                 </div>
                                                 <div className="col-sm d-flex cart-buttons">
-                                                    <button className='cart-button-1'><i className="fa-solid fa-minus"></i></button>
+                                                    <button className='cart-button-1' onClick={() => {
+                                                        this.props.handleDeleteByOneClick(item[0].id, item[1]);
+                                                    }}><i className="fa-solid fa-minus"></i></button>
                                                     <div className='cart-quantity-display'>{item[1]}</div>
                                                     <button className='cart-button-2' onClick={() => {
                                                         this.props.handleAddClick(item[0])
                                                     }}><i className="fa-solid fa-plus"></i></button>
                                                 </div>
                                                 <div className="col-2 d-flex justify-content-around cart-cancel">
-                                                    <p>{(item[1]) * item[0].price[0].price}</p>
-                                                    <button><i className="fa-solid fa-xmark"></i></button>
+                                                    <p>{Number((item[1]) * item[0].price[0].price).toFixed(2)}</p>
+                                                    <button onClick={() => {
+                                                        this.props.handleDeleteCartId(item[0].id);
+                                                    }}><i className="fa-solid fa-xmark"></i></button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </>
+                                    </div>)
                                 })}
                                 <hr />
                                 <div className='d-flex justify-content-between'>
@@ -116,7 +121,7 @@ class Cart extends Component {
                                                     <h1>Are you sure you want to remove all items from your basket</h1>
                                                     <div className='cart-conformation-button'>
                                                         <button className='cart-ok-button me-4' onClick={() => {
-                                                            this.handleConformationClick();
+                                                            this.props.handleDeleteCartData(2);
                                                         }}>OK</button>
                                                         <button className='cart-cancel-button' onClick={() => {
                                                             this.setState({
