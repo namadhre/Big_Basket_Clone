@@ -1,0 +1,138 @@
+.cart-main-container{
+    width: 65%;
+}
+
+.cart-empty-basket{
+    color: black;
+    border: 1px solid green
+}
+
+.cart-empty-basket:hover{
+    color: grey;
+    border: 1px solid green;
+}
+
+.continue-shopping-button{
+    border: 1px solid grey;
+    box-shadow: 0px 0px 19px -8px rgba(0, 0, 0, 0.75);
+}
+
+.basket-length{
+    color: black;
+    font-size: 2rem;
+    font-weight: 300;
+
+}
+
+.cart-description{
+    background-color: #555555;
+    padding: 1.5rem;
+    color: white;
+    border: 1px solid black;
+}
+
+.cart-fruits-veggies{
+    background-color: #dfdfdf;
+}
+
+.cart-fruits-veggies h1{
+    color: black;
+}
+
+.cart-fruits-veggies small{
+    color: #6d6b6b;
+    margin-left: 20px;
+    font-size: 12px;
+}
+
+.cart-product-details small{
+    font-size: 10px;
+    color: #6d6b6b;
+}
+
+.cart-buttons button {
+    background-color: #e7e7e7;
+}
+
+.cart-button-2 {
+    font-size: 12px;
+    padding: 3px;
+    width: 30px;
+    height: 20px;
+    border: 1px solid #6d6b6b;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border-left: none;
+}
+
+.cart-buttons input{
+    padding: 5px;
+    width: 30px;
+    height: 20px;
+}
+
+.cart-button-1{
+    font-size: 12px;
+    padding: 3px;
+    width: 30px;
+    height: 20px;
+    border: 1px solid #6d6b6b;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border-right: none;
+}
+
+.cart-cancel p{
+    font-size: large;
+}
+
+.cart-cancel button{
+    margin-top: 5px;
+    font-size: 17px;
+    width: 30px;
+    height: 20px;
+    border: none;
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+.cart-continue-shopping button{
+    font-size: 14px;
+}
+
+.cart-empty-basket{
+    font-weight: 100;
+}
+
+.cart-side-container{
+    border: 1px solid black;
+    flex: 0.7;
+}
+
+.cart-conformation h1{
+    color: #6d6b6b;
+}
+
+.cart-ok-button {
+    width: 60px;
+    height: 30px;
+    background-color: #f3cd76;
+    border-radius: 5px;
+    border: 0.5px solid #ddab35;
+}
+
+.cart-cancel-button {
+    border-radius: 5px;
+    width: 80px;
+    height: 30px;
+    border: 0.5px solid grey;
+}
+
+.cart-quantity-display{
+    padding-left: 5px;
+    width: 30px;
+    height: 20px;
+    border: 1px solid black;
+}
+
+
+
