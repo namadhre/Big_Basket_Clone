@@ -36,10 +36,10 @@ class Footer extends Component {
                             <div className='store-button'>
                                 <h1>Download Our App</h1>
                                 <button className='mb-3'>
-                                    <img src={appleStoreLogo} />
+                                    <img src={appleStoreLogo} alt="apple-logo"/>
                                 </button>
                                 <button>
-                                    <img src={googleStoreLogo} />
+                                    <img src={googleStoreLogo} alt="googole-logo"/>
                                 </button>
                             </div>
                             <div>
