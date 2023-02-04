@@ -33,3 +33,37 @@ p {
 a {
     text-decoration: none;
 }
+
+.addto-cart-quantity{
+    display: inline-block;
+    width: 35px;
+    height: 25px;
+    padding-left: 3px;
+    border: 1px solid grey;
+    background-color: rgb(228, 228, 228);
+    border-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+}
+
+.addto-cart-input {
+    width: 55px;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.addto-cart-button {
+    width: 50%;
+    height: 25px;
+    margin-left: 5px;
+    padding: 3px;
+}
+
+.product-bottom p{
+    color: #ff0000
+}
+
+.price-container-p p{
+    font-size: 15px;
+}
