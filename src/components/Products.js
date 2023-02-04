@@ -10,6 +10,7 @@ class Products extends Component {
         this.state = {
             price: "",
             quantityError: "",
+            addMessage: "",
         }
     }
 
@@ -68,11 +69,20 @@ class Products extends Component {
                             }
                         }} />
                         <button className='btn btn-warning addto-cart-button' onClick={() => {
-                            this.props.handleAddClick(product)
+                            this.props.handleAddClick(product);
+                            this.setState({
+                                addMessage: "Item Added Sucessfully"
+                            })
+                            setTimeout(() => {
+                                this.setState({
+                                    addMessage: ""
+                                })
+                            }, 1000);
                         }
                         }> ADD <i className="fa-solid fa-basket-shopping"></i> </button>
                         <p>{this.state.quantityError}</p>
                     </div>
+                    <p className='add-message-p'>{this.state.addMessage}</p>
 
                 </div>
             </div>
