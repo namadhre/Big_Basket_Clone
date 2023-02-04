@@ -15,6 +15,8 @@ import vegetablesImg from './images/vegetables.jpg';
 import plusesImg from './images/pluses.jpg';
 import sproutsImg from './images/sprouts.jpg';
 import SearchItem from './components/SearchItem';
+import Cart from './components/Cart';
+import addData from './redux/actions/addData';
 
 
 class App extends Component {
@@ -26,11 +28,15 @@ class App extends Component {
       value: "",
       product: "",
       isItemFound: false,
+      price: "",
+      quantity: 1,
+      cartItems: null,
     }
 
   }
 
-  handleChangeValue = (event) => {
+
+  handleSearch = (event) => {
 
     let item = this.props.items.filter((product) => {
       let name = event.target.value.toLowerCase();
@@ -52,14 +58,40 @@ class App extends Component {
 
   }
 
+  handleChangeQuantity = (event) => {
+
+    if (Number(event.target.value)) {
+      this.setState({
+        quantity: event.target.value,
+        quantityError: ""
+      })
+    } else {
+      this.setState({
+        quantityError: "Invalid Quantity"
+      })
+    }
+  }
+
+  handleAddClick = (product) => {
+    let id = product.id;
+    let quantity = this.state.quantity;
+    if (quantity < 6) {
+      this.props.addData({
+        quantity,
+        id
+      });
+    }
+    this.setState({
+      quantity: 1,
+    })
+  }
 
   render() {
-
     return (
       <div className="App">
         <Router>
           <Header products={this.props.items}
-            handleChangeValue={this.handleChangeValue}
+            handleChangeValue={this.handleSearch}
           />
           <Switch>
             <Route path="/" exact>
@@ -76,19 +108,19 @@ class App extends Component {
                   </>
 
                 }
-                {this.state.value !== "" && this.state.isItemFound == false &&
+                {this.state.value !== "" && this.state.isItemFound === false &&
                   <>
                     <div className='h1 text-center'>No Item found </div>
                   </>
 
                 }
                 <div className='d-flex justify-content-center mt-2'>
-                  <img className="img-fluid" src='https://www.bigbasket.com/media/uploads/banner_images/YXHP144_hp_fom_m_bbpl-staples_460_320123_Bangalore.jpg' />
+                  <img className="img-fluid" src='https://www.bigbasket.com/media/uploads/banner_images/YXHP144_hp_fom_m_bbpl-staples_460_320123_Bangalore.jpg' alt="Banner" />
                 </div>
                 <div className='container mt-4'>
                   <div className='row'>
                     <div className='col d-flex justify-content-center'>
-                      <img className="img-thumbnail" src='https://www.bigbasket.com/media/uploads/banner_images/cp_GM-republic_EPbanner_400_250123.jpg' alt='image' />
+                      <img className="img-thumbnail" src='https://www.bigbasket.com/media/uploads/banner_images/cp_GM-republic_EPbanner_400_250123.jpg' alt='Big-Basket' />
                     </div>
                   </div>
                 </div>
@@ -143,7 +175,16 @@ class App extends Component {
                 <div className="h1 text-center mt-3"> Best Sellers </div>
                 <div className="container common-container">
                   <div className="row">
-                    <Products />
+                    {this.props.items.map((product) => {
+                      return (
+                        <Products
+                          item={product}
+                          key={product.id}
+                          handleAddClick={this.handleAddClick}
+                          handleChangeQuantity={this.handleChangeQuantity}
+                        />
+                      )
+                    })}
                   </div>
                 </div>
               </>
@@ -153,7 +194,9 @@ class App extends Component {
                 <div className="h1 text-center mt-3"> Fruits </div>
                 <div className="container common-container">
                   <div className="row">
-                    <Fruits />
+                    <Fruits
+                      handleAddClick={this.handleAddClick}
+                      handleChangeQuantity={this.handleChangeQuantity} />
                   </div>
                 </div>
               </>
@@ -163,7 +206,9 @@ class App extends Component {
                 <div className="h1 text-center mt-3"> Vegetables </div>
                 <div className="container common-container">
                   <div className="row">
-                    <Vegetables />
+                    <Vegetables
+                      handleAddClick={this.handleAddClick}
+                      handleChangeQuantity={this.handleChangeQuantity} />
                   </div>
                 </div>
               </>
@@ -173,7 +218,9 @@ class App extends Component {
                 <div className="h1 text-center mt-3"> Pluses </div>
                 <div className="container common-container">
                   <div className="row">
-                    <Pluses />
+                    <Pluses
+                      handleAddClick={this.handleAddClick}
+                      handleChangeQuantity={this.handleChangeQuantity} />
                   </div>
                 </div>
               </>
@@ -183,14 +230,24 @@ class App extends Component {
                 <div className="h1 text-center mt-3"> Cut Sporouts </div>
                 <div className="container common-container">
                   <div className="row">
-                    <CutSporouts />
+                    <CutSporouts
+                      handleAddClick={this.handleAddClick}
+                      handleChangeQuantity={this.handleChangeQuantity} />
                   </div>
                 </div>
               </>
             </Route>
 
+            <Route path="/cart">
+              <Cart
+                handleAddClick={this.handleAddClick}
+                handleChangeQuantity={this.handleChangeQuantity} />
+            </Route>
+
             <Route path="/:id" exact render={(routeProps) => {
               return <SingleProduct id={routeProps.match.params.id}
+                handleAddClick={this.handleAddClick}
+                handleChangeQuantity={this.handleChangeQuantity}
                 product={this.props.items.find((item) => {
                   return routeProps.match.params.id == item.id;
                 })} />
@@ -212,4 +269,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+    addData: (payload) => {
+      return dispatch(addData(payload));
+    }
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
