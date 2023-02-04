@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import img_google from "../google.svg";
 import img_apple from "../apple.svg";
 import './Signup.css';
-import addData from '../redux/actions/addData';
+import addDataUsers from '../redux/actions/addDataUser';
 
 class Signup extends Component {
     constructor(props) {
@@ -115,7 +114,6 @@ class Signup extends Component {
     handleSecondSubmit = (event) => {
 
         let count = 0
-        console.log("first", count)
         event.preventDefault();
 
         if (validator.isEmail(this.state.email)) {
@@ -159,7 +157,7 @@ class Signup extends Component {
                     email: this.state.email,
                     number: this.state.number,
                 };
-                this.props.addData({ user })
+                this.props.addDataUsers({ user })
             })
         } else {
             console.log("Hello")
@@ -313,8 +311,8 @@ class Signup extends Component {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        addData: (payload) => {
-            return dispatch(addData(payload));
+        addDataUsers: (payload) => {
+            return dispatch(addDataUsers(payload));
         }
     }
 }
