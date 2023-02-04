@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import bblogo from "../images/bb_logo.png";
 import Signup from './Signup';
 import "./Header.css";
+
 
 
 class Header extends Component {
@@ -12,6 +14,30 @@ class Header extends Component {
     }
 
     render() {
+        let cartSize;
+        if (this.props.cartItems.length > 0 && this.props.cartItems[0]) {
+
+            let reducedCartDetails = this.props.cartItems.reduce((accumulator, item) => {
+                if (accumulator.hasOwnProperty(item.id)) {
+                    accumulator[item.id] += Number(item.quantity);
+                } else {
+                    accumulator[item.id] = Number(item.quantity);
+                }
+                return accumulator;
+            }, {});
+
+            let reducedCartItems = Object.entries(reducedCartDetails).map((detail) => {
+                let productInfo = this.props.items.find((item) => {
+                    return item.id == detail[0];
+                });
+                return [productInfo, detail[1]];
+            },);
+
+            cartSize = reducedCartItems.length;
+        } else {
+            cartSize = 0;
+        }
+
         return (
             <header className='d-flex justify-content-center'>
                 <div className='navbar-container-1'>
@@ -61,12 +87,14 @@ class Header extends Component {
                     </div>
                     <div className='cart-container'>
                         <Signup />
-                        <Link to="/cart">
-                            <button className='mt-4 cart-button'>
-                                <span><i className="fa-solid fa-basket-shopping h4"></i></span>
-                                 My Basket 0 items
-                                 </button>
-                        </Link>
+                        <div>
+                            <Link to="/cart">
+                                <button className='mt-4 cart-button'>
+                                    <span><i className="fa-solid fa-basket-shopping h4"></i> </span>
+                                    My Basket {`${cartSize} items`}
+                                </button>
+                            </Link>
+                        </div>
                     </div>
 
                 </div>
@@ -74,5 +102,12 @@ class Header extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        cartItems: state.cartItemsData.cartItems,
+        items: state.itemsData.items
+    }
+}
 
-export default Header;
+
+export default connect(mapStateToProps)(Header);
